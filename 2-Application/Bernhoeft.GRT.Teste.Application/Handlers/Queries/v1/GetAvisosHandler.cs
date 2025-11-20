@@ -15,7 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Bernhoeft.GRT.Teste.Application.Handlers.Queries.v1
 {
     public class GetAvisosHandler : IRequestHandler<GetAvisosRequest, IOperationResult<IEnumerable<GetAvisosResponse>>>,
-        IRequestHandler<GetIdAvisosRequest, IOperationResult<GetAvisosResponse>>, IRequestHandler<CreateAvisosRequest, IOperationResult<GetAvisosResponse>>   
+        IRequestHandler<GetIdAvisosRequest, IOperationResult<GetAvisosResponse>>  
     {
         private readonly IServiceProvider _serviceProvider;
 
@@ -57,27 +57,6 @@ namespace Bernhoeft.GRT.Teste.Application.Handlers.Queries.v1
 
         }
 
-        public async Task<IOperationResult<GetAvisosResponse>> Handle(CreateAvisosRequest request, CancellationToken cancellationToken)
-        {
-            try
-            {
-                var validator = new CreateAvisosRequestValidator().Validate(request);
-
-                if(!validator.IsValid)
-                    return OperationResult<GetAvisosResponse>.ReturnBadRequest().AddMessage(validator.Errors.Select(s => s.ErrorMessage));
-
-                var criarAvisoRequest = request.ToEntity();
-
-                await _avisoRepository.CriarAvisoAsync(criarAvisoRequest);
-
-                return OperationResult<GetAvisosResponse>.ReturnCreated();
-
-            }
-            catch (Exception ex)
-            {
-
-                return OperationResult<GetAvisosResponse>.ReturnInternalServerError(ex);
-            }
-        }
+       
     }
 }

@@ -1,11 +1,10 @@
 ﻿using Bernhoeft.GRT.ContractWeb.Domain.SqlServer.ContractStore.Entities;
 using Bernhoeft.GRT.Core.Interfaces.Results;
-using Bernhoeft.GRT.Teste.Application.Responses.Queries.v1;
 using MediatR;
 
-namespace Bernhoeft.GRT.Teste.Application.Requests.Queries
+namespace Bernhoeft.GRT.Teste.Application.Requests.Queries.v1
 {
-    public class CreateAvisosRequest : IRequest<IOperationResult<GetAvisosResponse>>
+    public class CreateAvisosRequest : IRequest<IOperationResult<object>>
     {
         public CreateAvisosRequest(string titulo, string mensagem)
         {
@@ -20,10 +19,10 @@ namespace Bernhoeft.GRT.Teste.Application.Requests.Queries
 
         public AvisoEntity ToEntity() => new AvisoEntity
         {
-            Ativo = this.Ativo,
-            Titulo = this.Titulo,
-            Mensagem = this.Mensagem,
-            DataCriacao = this.DataCriacao
+            Ativo = Ativo,
+            Titulo = Titulo,
+            Mensagem = Mensagem,
+            DataCriacao = DataCriacao
         };  
     }
 }

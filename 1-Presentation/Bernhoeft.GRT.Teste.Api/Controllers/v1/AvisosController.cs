@@ -1,5 +1,4 @@
-﻿using Bernhoeft.GRT.Teste.Application.Requests.Queries;
-using Bernhoeft.GRT.Teste.Application.Requests.Queries.v1;
+﻿using Bernhoeft.GRT.Teste.Application.Requests.Queries.v1;
 using Bernhoeft.GRT.Teste.Application.Responses.Queries.v1;
 
 namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
