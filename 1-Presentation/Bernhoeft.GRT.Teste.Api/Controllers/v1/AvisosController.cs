@@ -30,7 +30,7 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<object> GetAviso(int id, CancellationToken cancellationToken)
-            => await Mediator.Send(new GetIdAvisosRequest() { Id = id}, cancellationToken);
+            => await Mediator.Send(new GetIdAvisosRequest { Id = id }, cancellationToken);
 
         /// <summary>
         /// Retorna Todos os Avisos Cadastrados para Tela de Edição.
@@ -55,10 +55,41 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
         ///// <response code="400">Dados Inválidos.</response>
         ///// <response code="500">Erro interno.</response>
         [HttpPost()]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetAvisosResponse))]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<object> CreateAvisos(CreateAvisosRequest request, CancellationToken cancellationToken)
+            => await Mediator.Send(request, cancellationToken);
+
+        ///// <summary>
+        ///// Deletar um Aviso.
+        ///// </summary>
+        ///// <param name="request"></param>
+        ///// <param name="cancellationToken"></param>
+        ///// <returns>Aviso.</returns>
+        ///// <response code="204">Deletado com sucesso.</response>
+        ///// <response code="400">Dados Inválidos.</response>
+        ///// <response code="500">Erro interno.</response>
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<object> DeleteAvisos(int id, CancellationToken cancellationToken)
+            => await Mediator.Send(new DeleteIdAvisosRequest { DeletId = id}, cancellationToken);
+
+        ///// Atualizar um Aviso.
+        ///// </summary>
+        ///// <param name="request"></param>
+        ///// <param name="cancellationToken"></param>
+        ///// <returns>Aviso.</returns>
+        ///// <response code="200">Atualizado com sucesso.</response>
+        ///// <response code="400">Dados Inválidos.</response>
+        ///// <response code="500">Erro interno.</response>
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetAvisosResponse))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<object> AtualizarAvisos(AtualizarAvisosRequest request, CancellationToken cancellationToken)
             => await Mediator.Send(request, cancellationToken);
     }
 }

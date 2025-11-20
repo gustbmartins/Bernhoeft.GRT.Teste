@@ -14,12 +14,50 @@ namespace Bernhoeft.GRT.ContractWeb.Infra.Persistence.SqlServer.ContractStore.Re
         {
         }
 
-        public async Task<int> CriarAvisoAsync(AvisoEntity avisoEntity, CancellationToken cancellationToken = default)
+        public async Task<AvisoEntity> AtualizarAvisoAsync(int id, string mensagem, TrackingBehavior tracking = TrackingBehavior.Default, CancellationToken cancellationToken = default)
+        {
+            var query = tracking is TrackingBehavior.NoTracking ? Set.AsNoTrackingWithIdentityResolution() : Set;
+            var aviso = await query.Where(wh => wh.Id == id && wh.Ativo).SingleOrDefaultAsync();
+
+            if (aviso?.Id is not null)
+            {
+                aviso.DataAlteracao = DateTime.UtcNow;
+                aviso.Mensagem = mensagem;
+
+                Set.Update(aviso);
+                await Context.SaveChangesAsync(cancellationToken);
+
+            }
+            return await query.Where(wh => wh.Id == id).SingleOrDefaultAsync();
+            
+
+        }
+
+        public async Task CriarAvisoAsync(AvisoEntity avisoEntity, CancellationToken cancellationToken = default)
         {
             await Set.AddAsync(avisoEntity, cancellationToken);
             await Context.SaveChangesAsync(cancellationToken);
 
-            return avisoEntity.Id;
+        }
+
+        public async Task<bool> DeletarAvisoAsync(int id, TrackingBehavior tracking = TrackingBehavior.Default, CancellationToken cancellationToken = default)
+        {
+            var query = tracking is TrackingBehavior.NoTracking ? Set.AsNoTrackingWithIdentityResolution() : Set;
+            var aviso = await query.Where(wh => wh.Id == id && wh.Ativo).SingleOrDefaultAsync();
+
+            if (aviso?.Id is not null)
+            {
+                aviso.Ativo = false;
+                aviso.DataAlteracao = DateTime.UtcNow;
+
+                Set.Update(aviso);
+                await Context.SaveChangesAsync(cancellationToken);
+
+                return true;
+
+            }
+
+            return false;
         }
 
         public Task<AvisoEntity> ObterAvisoPorIdAsync(int id, TrackingBehavior tracking = TrackingBehavior.Default, CancellationToken cancellationToken = default)

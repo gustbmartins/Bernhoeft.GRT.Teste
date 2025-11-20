@@ -1,4 +1,5 @@
 ﻿using Bernhoeft.GRT.ContractWeb.Domain.SqlServer.ContractStore.Interfaces.Repositories;
+using Bernhoeft.GRT.Core.EntityFramework.Domain.Interfaces;
 using Bernhoeft.GRT.Core.Interfaces.Results;
 using Bernhoeft.GRT.Core.Models;
 using Bernhoeft.GRT.Teste.Application.Requests.Queries.v1;
@@ -12,6 +13,7 @@ namespace Bernhoeft.GRT.Teste.Application.Handlers.Queries.v1
     {
         private readonly IServiceProvider _serviceProvider;
         private IAvisoRepository _avisoRepository => _serviceProvider.GetRequiredService<IAvisoRepository>();
+        public PostAvisosHandler(IServiceProvider serviceProvider) => _serviceProvider = serviceProvider;
 
         public async Task<IOperationResult<object>> Handle(CreateAvisosRequest request, CancellationToken cancellationToken)
         {
@@ -32,7 +34,7 @@ namespace Bernhoeft.GRT.Teste.Application.Handlers.Queries.v1
             catch (Exception ex)
             {
 
-                return OperationResult<object>.ReturnInternalServerError(ex);
+                return OperationResult<object>.ReturnInternalServerError().AddMessage(ex.Message);
             }
         }
     }

@@ -4,12 +4,10 @@ using Bernhoeft.GRT.Core.Enums;
 using Bernhoeft.GRT.Core.Extensions;
 using Bernhoeft.GRT.Core.Interfaces.Results;
 using Bernhoeft.GRT.Core.Models;
-using Bernhoeft.GRT.Teste.Application.Requests.Queries;
 using Bernhoeft.GRT.Teste.Application.Requests.Queries.v1;
 using Bernhoeft.GRT.Teste.Application.Requests.Queries.v1.Validations;
 using Bernhoeft.GRT.Teste.Application.Responses.Queries.v1;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Bernhoeft.GRT.Teste.Application.Handlers.Queries.v1

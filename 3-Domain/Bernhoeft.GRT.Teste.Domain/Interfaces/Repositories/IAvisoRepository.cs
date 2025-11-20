@@ -8,7 +8,9 @@ namespace Bernhoeft.GRT.ContractWeb.Domain.SqlServer.ContractStore.Interfaces.Re
     {
         Task<List<AvisoEntity>> ObterTodosAvisosAsync(TrackingBehavior tracking = TrackingBehavior.Default, CancellationToken cancellationToken = default);
         Task<AvisoEntity> ObterAvisoPorIdAsync(int id, TrackingBehavior tracking = TrackingBehavior.Default, CancellationToken cancellationToken = default);
-        Task<int> CriarAvisoAsync(AvisoEntity avisoEntity, CancellationToken cancellationToken = default);
-        Task<int> DeletarAvisoAsync();
+        Task CriarAvisoAsync(AvisoEntity avisoEntity, CancellationToken cancellationToken = default);
+        Task<bool> DeletarAvisoAsync(int id, TrackingBehavior tracking = TrackingBehavior.Default, CancellationToken cancellationToken = default);
+
+        Task<AvisoEntity> AtualizarAvisoAsync(int id, string mensagem, TrackingBehavior tracking = TrackingBehavior.Default, CancellationToken cancellationToken = default);
     }
 }

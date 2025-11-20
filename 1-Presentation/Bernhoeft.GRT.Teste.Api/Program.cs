@@ -84,12 +84,16 @@ builder.Services.AddSwaggerGen(options =>
 
 // Configurando o MediatR.
 builder.Services.AddMediatR(options => options.RegisterServicesFromAssemblyContaining<GetAvisosRequest>());
+builder.Services.AddMediatR(options => options.RegisterServicesFromAssemblyContaining<CreateAvisosRequest>());
+builder.Services.AddMediatR(options => options.RegisterServicesFromAssemblyContaining<DeleteIdAvisosRequest>());
 
 // Adicionar Context de Conexão com Banco de Dados SqlServer GRT.
 builder.Services.AddDbContext();
 
 // Outros Serviços.
 builder.Services.RegisterServicesFromAssemblyContaining<GetAvisosRequest>();
+builder.Services.RegisterServicesFromAssemblyContaining<CreateAvisosRequest>();
+builder.Services.RegisterServicesFromAssemblyContaining<DeleteIdAvisosRequest>();
 
 // Adicionando Fluent Validation.
 ValidatorOptions.Global.DefaultClassLevelCascadeMode = CascadeMode.Stop;
@@ -97,7 +101,11 @@ ValidatorOptions.Global.DefaultRuleLevelCascadeMode = CascadeMode.Stop;
 ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("pt-BR");
 builder.Services.AddFluentValidationAutoValidation(options => options.DisableDataAnnotationsValidation = true)
                 .AddFluentValidationClientsideAdapters()
-                .AddValidatorsFromAssemblyContaining<GetAvisosRequest>();
+                .AddValidatorsFromAssemblyContaining<GetAvisosRequest>()
+                .AddValidatorsFromAssemblyContaining<CreateAvisosRequest>()
+                .AddValidatorsFromAssemblyContaining<DeleteIdAvisosRequest>()
+
+               ;
 builder.Services.AddFluentValidationRulesToSwagger();
 
 // Configure Some Options

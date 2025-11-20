@@ -7,6 +7,7 @@ namespace Bernhoeft.GRT.Teste.Application.Responses.Queries.v1
         public int Id { get; set; }
         public bool Ativo { get; set; }
         public string Titulo { get; set; }
+        public string Mensagem { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime? DataAlteracao { get; set; }
 
@@ -15,6 +16,7 @@ namespace Bernhoeft.GRT.Teste.Application.Responses.Queries.v1
             Id = entity.Id,
             Ativo = entity.Ativo,
             Titulo = entity.Titulo,
+            Mensagem = entity.Mensagem,
             DataCriacao = entity.DataCriacao,
             DataAlteracao = entity.DataAlteracao
         };
