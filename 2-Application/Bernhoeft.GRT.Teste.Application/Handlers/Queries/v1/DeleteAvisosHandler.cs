@@ -31,7 +31,7 @@ namespace Bernhoeft.GRT.Teste.Application.Handlers.Queries.v1
 
                 var result = await _avisoRepository.DeletarAvisoAsync(request.DeletId);
 
-                return result ? OperationResult<object>.ReturnNoContent() : OperationResult<object>.ReturnNotFound().AddMessage("Aviso informado não existe.");
+                return result ? OperationResult<object>.ReturnOk("Aviso deletado com sucesso.") : OperationResult<object>.ReturnNoContent();
             }
             catch (Exception ex)
             {

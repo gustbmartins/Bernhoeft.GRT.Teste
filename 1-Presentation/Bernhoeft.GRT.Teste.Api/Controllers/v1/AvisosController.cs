@@ -22,8 +22,9 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
         ///// <param name="cancellationToken"></param>
         ///// <returns>Aviso.</returns>
         ///// <response code="200">Sucesso.</response>
+        /////<response code="204">Aviso Não Encontrado.</response>
         ///// <response code="400">Dados Inválidos.</response>
-        ///// <response code="404">Aviso Não Encontrado.</response>
+        ///// <response code="500">Erro interno</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetAvisosResponse))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -67,10 +68,12 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
         ///// <param name="request"></param>
         ///// <param name="cancellationToken"></param>
         ///// <returns>Aviso.</returns>
-        ///// <response code="204">Deletado com sucesso.</response>
+        ///// <response code="200">Deletado com sucesso.</response>
+        ////<response code="204">Aviso não encontrado</response>
         ///// <response code="400">Dados Inválidos.</response>
         ///// <response code="500">Erro interno.</response>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -83,10 +86,12 @@ namespace Bernhoeft.GRT.Teste.Api.Controllers.v1
         ///// <param name="cancellationToken"></param>
         ///// <returns>Aviso.</returns>
         ///// <response code="200">Atualizado com sucesso.</response>
+        //// <response code="204">aviso não encontrado</response>
         ///// <response code="400">Dados Inválidos.</response>
         ///// <response code="500">Erro interno.</response>
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetAvisosResponse))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<object> AtualizarAvisos(AtualizarAvisosRequest request, CancellationToken cancellationToken)

@@ -30,7 +30,7 @@ namespace Bernhoeft.GRT.Teste.Application.Handlers.Queries.v1
 
                 var result = await _avisoRepository.AtualizarAvisoAsync(request.Id, request.Mensagem);
 
-                return result is null ? OperationResult<GetAvisosResponse>.ReturnNotFound().AddMessage("Aviso informado não existe.") : OperationResult<GetAvisosResponse>.ReturnOk(result);
+                return result is null ? OperationResult<GetAvisosResponse>.ReturnNoContent() : OperationResult<GetAvisosResponse>.ReturnOk(result);
 
             }
             catch (Exception ex)

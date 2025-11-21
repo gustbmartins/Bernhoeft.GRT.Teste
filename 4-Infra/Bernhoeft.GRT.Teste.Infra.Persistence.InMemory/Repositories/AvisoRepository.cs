@@ -21,7 +21,7 @@ namespace Bernhoeft.GRT.ContractWeb.Infra.Persistence.SqlServer.ContractStore.Re
 
             if (aviso?.Id is not null)
             {
-                aviso.DataAlteracao = DateTime.UtcNow;
+                aviso.DataAlteracao = DateTime.Now;
                 aviso.Mensagem = mensagem;
 
                 Set.Update(aviso);
@@ -48,7 +48,7 @@ namespace Bernhoeft.GRT.ContractWeb.Infra.Persistence.SqlServer.ContractStore.Re
             if (aviso?.Id is not null)
             {
                 aviso.Ativo = false;
-                aviso.DataAlteracao = DateTime.UtcNow;
+                aviso.DataAlteracao = DateTime.Now;
 
                 Set.Update(aviso);
                 await Context.SaveChangesAsync(cancellationToken);

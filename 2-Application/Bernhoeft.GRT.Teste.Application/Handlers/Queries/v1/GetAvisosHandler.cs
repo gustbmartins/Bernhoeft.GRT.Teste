@@ -43,7 +43,7 @@ namespace Bernhoeft.GRT.Teste.Application.Handlers.Queries.v1
                 var result = await _avisoRepository.ObterAvisoPorIdAsync(request.Id);
 
                 if (result is null)
-                    return OperationResult<GetAvisosResponse>.ReturnNotFound();
+                    return OperationResult<GetAvisosResponse>.ReturnNoContent();
 
                 return OperationResult<GetAvisosResponse>.ReturnOk((GetAvisosResponse)result);
             }

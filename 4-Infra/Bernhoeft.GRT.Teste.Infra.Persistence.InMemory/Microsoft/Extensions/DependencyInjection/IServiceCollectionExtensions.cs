@@ -25,7 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
                                {
                                    Titulo = "Titulo 1",
                                    Mensagem = "Mensagem 1",
-                                   DataCriacao = DateTime.UtcNow,
+                                   DataCriacao = DateTime.Now,
                                    Ativo = true
 
                                });
@@ -33,7 +33,7 @@ namespace Microsoft.Extensions.DependencyInjection
                                {
                                    Titulo = "Titulo 2",
                                    Mensagem = "Mensagem 2",
-                                   DataCriacao = DateTime.UtcNow,
+                                   DataCriacao = DateTime.Now,
                                    Ativo = true
                                });
                                await context.SaveChangesAsync(cancellationToken);
